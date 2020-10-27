@@ -6,6 +6,6 @@ Welcome to the VS Code Java world. Here is a guideline to help you get started t
 
 
 - `src`: the folder to maintain sources
--- `asd` :
+- `asd` :
 - `lib`: the folder to maintain dependencies
 
