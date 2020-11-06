@@ -1,4 +1,4 @@
-package  TP5.Ejercicio1_Tp5;
+package TP5.Ejercicio1_Tp5;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,26 +25,28 @@ public class Compartido {
 
         this.m.put('p', 1);
         this.m.put('g', 2);
-        this.tiempo = new Random().longs(1000, 2000).iterator();
+        this.tiempo = new Random().longs( 1000, 2000 ).iterator();
     }
 
-    public boolean entrarAComer(Character tipo) {
-        boolean rta=false;
+    public boolean entrarAComer( Character tipo)  {
+        boolean rta = false;
         int num;
 
-        if (mutex1.tryAcquire()) {
+        if ( mutex1.tryAcquire() ) {
 
-            num= m.get(Character.toLowerCase(tipo));
+            num = m.get( Character.toLowerCase( tipo ) );
 
-            if (turno == 0) {
+            if ( turno == 0 ) {
 
-                rta=true;
+                rta = true;
                 this.turno = num;
 
             } else {
-                if(turno==num){rta = true;
+
+                if ( turno == num ) {
+
+                    rta = true;
                 }
-                
 
             }
         }
@@ -52,6 +54,8 @@ public class Compartido {
     }
 
     public void tomarPlato() {
+
+    
     }
 
     public void dejarPlato() {
