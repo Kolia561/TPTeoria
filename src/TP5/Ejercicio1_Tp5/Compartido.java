@@ -13,7 +13,7 @@ public class Compartido {
     private final Semaphore mutex3 = new Semaphore(1);
     private Semaphore platos;
 
-    int vecesQComen;
+    int vecesQComen = 10;
     int comieron;
     int numPlatos;
 
@@ -26,7 +26,7 @@ public class Compartido {
     public Compartido(int platos, int caso) {
 
         this.comieron = 0;
-        this.numPlatos=platos;
+        this.numPlatos = platos;
 
         this.platos = new Semaphore(platos);
 
@@ -61,6 +61,7 @@ public class Compartido {
                 }
 
             }
+            mutex1.release();
         }
         return rta;
     }
@@ -91,7 +92,6 @@ public class Compartido {
                 break;
 
             default:
-
                 platos.release();
 
                 break;
@@ -103,13 +103,32 @@ public class Compartido {
 
         mutex2.acquire();
         comieron++;
-        if (comieron >= vecesQComen && platos.availablePermits()==) {
+
+        if (comieron >= vecesQComen && platos.availablePermits() == numPlatos) {
 
             turno = (turno % m.size()) + 1;
-
+            comieron = 0;
+            System.out.println("El " + Thread.currentThread().getName()
+                    + " ya termino del comedor y y deice que es turno de [" + turno + "]");
+        } else {
+            System.out.println("El " + Thread.currentThread().getName() + " ya termino del comedor y salio");
         }
+
         mutex2.release();
 
+    }
+
+    public boolean esTurno(Character tipo) {
+
+        boolean rta = false;
+
+        if (mutex3.tryAcquire()) {
+
+            rta = turno == m.get(Character.toLowerCase(tipo));
+            mutex3.release();
+        }
+
+        return rta;
     }
 
 }

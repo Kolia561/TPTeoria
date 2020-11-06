@@ -15,15 +15,15 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Compartido2 comedero = new Compartido2(); // creamos la instancia del comedero con la cnatidad de platos
+        Compartido comedero = new Compartido(5,0); // creamos la instancia del comedero con la cnatidad de platos
         List<Thread> animales = new ArrayList<>();
 
         for (int i = 0; i < 1; i++) {
-            animales.add(new Thread(new Animal2(comedero, 'p'), ("Perro " + (i + 1))));
+            animales.add(new Thread(new Animal(comedero, 'p'), ("Perro " + (i + 1))));
 
         }
         for (int i = 0; i < 10; i++) {
-            animales.add(new Thread(new Animal2(comedero, 'g'), ("Gato " + (i + 1))));
+            animales.add(new Thread(new Animal(comedero, 'g'), ("Gato " + (i + 1))));
 
         }
 
