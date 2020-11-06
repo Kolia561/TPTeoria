@@ -13,7 +13,7 @@ public class Main{
         tren.start();
         vendedor.start();
         for(int i=0; i<pasajeros.length; i++){
-            pasajeros[i] = new Thread(new Pasajero(unTren),"Pasajero "+i);
+            pasajeros[i] = new Thread(new Pasajero(unTren),"Pasajero "+(i+1));
             pasajeros[i].start();
         }
 

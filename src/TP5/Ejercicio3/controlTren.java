@@ -19,7 +19,7 @@ public class controlTren implements Runnable {
                 Thread.sleep(2000);
                 elTren.llegar();
                 System.out.println("el tren llego a destino");
-                Thread.sleep(2000);
+                Thread.sleep(2500);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
