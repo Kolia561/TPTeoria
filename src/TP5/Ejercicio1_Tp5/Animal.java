@@ -21,10 +21,13 @@ public class Animal implements Runnable {
     public void run() {
 
 
-        comedor.entrarAComer();
-        comedor.tomarPlato();
-        comedor.dejarPlato();
-        comedor.salirComedor();
+        if (comedor.entrarAComer(tipo)) {
+            
+            comedor.tomarPlato();
+            comedor.dejarPlato();
+            comedor.salirComedor();
+        }
+        
         this.pasear();
 
 
