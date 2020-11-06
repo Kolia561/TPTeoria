@@ -8,7 +8,7 @@ public class Tren {
     public Semaphore cantTickets = new Semaphore(0);
     public Semaphore cantPasajeros = new Semaphore(0);
     public Semaphore capacidad = new Semaphore(0);
-    public Semaphore enRecorrido = new Semaphore(0);
+    public Semaphore enElTren = new Semaphore(0);
 
     public Tren(int c) {
         cantTickets.release(c);
@@ -17,26 +17,26 @@ public class Tren {
 
     public void venderTicket() throws InterruptedException {
 
-        cantTickets.acquire();
-        cantPasajeros.release();
+        cantTickets.acquire();      // el vendedor tiene tantos tickets a la venta como capacidad el tren, al vender un ticket el semaforo tiene un permiso menos
+        cantPasajeros.release();    // por lo que limita la cantidad de tickets a vender y de pasajeros
     }
 
     public void comprarTicket() throws InterruptedException {
 
-        cantPasajeros.acquire();
+        cantPasajeros.acquire();    // el pasajero intenta obtener uno de los permisos liberados por el vendedor de tickets y ocupa un lugar en la "capacidad" del tren
         capacidad.release();
-        enRecorrido.acquire();
+        enElTren.acquire();         // mientras "esta en el tren" no puede volver a comprar mas tickets
     }
 
     public void arrancar() throws InterruptedException {
 
-        capacidad.acquire(cant);
+        capacidad.acquire(cant);    // si el tren esta a full capacidad arranca
 
     }
 
     public void llegar() {
 
-        enRecorrido.release(cant);
-        cantTickets.release(cant);
+        enElTren.release(cant);     // libera a los pasajeros que estaban "en el tren"
+        cantTickets.release(cant);  // libera los tickets para que puedan ser vendidos nuevamente
     }
 }
