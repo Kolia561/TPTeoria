@@ -12,13 +12,13 @@ public class Consumidor implements Runnable {
         try {
             buff.consumidor.acquire();
             while (true) {
-                if (Math.floor(Math.random()*3 + 1) == 1) {
+                if ((Math.floor(Math.random()*3 + 1) == 1)||(!buff.consumir())) {
 
                     buff.productor.release();
                     buff.consumidor.acquire();
                 }
                 Thread.sleep(300);
-                buff.consumir();
+                
             }
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block

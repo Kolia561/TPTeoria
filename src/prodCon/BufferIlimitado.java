@@ -12,18 +12,21 @@ public class BufferIlimitado {
     public void producir(String item) throws InterruptedException {
         sem.acquire();
         cola.add(item);
-        System.out.println("se produjo un item, hay: "+cola.size());
+        System.out.println("Se produjo un item, hay: "+cola.size());
         sem.release();
     }
 
-    public void consumir() throws InterruptedException {
+    public boolean consumir() throws InterruptedException {
+        boolean flag = false;
         sem.acquire();
         if (cola.size() > 0) {
             cola.remove();
-            System.out.println("se consumio un item, hay: "+cola.size());
+            System.out.println("Se consumio un item, hay: "+cola.size());
+            flag = true;
         }else {
-            System.out.println("no se puede remover item, hay: "+cola.size());
+            System.out.println("No se puede consumir item, la cola esta vacia");
         }
         sem.release();
+        return flag;    
     }
 }
