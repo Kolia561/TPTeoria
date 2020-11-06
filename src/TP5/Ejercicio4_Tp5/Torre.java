@@ -1,4 +1,4 @@
-package TP5.EJ4;
+package TP5.Ejercicio4_Tp5;
 
 import java.util.concurrent.Semaphore;
 
