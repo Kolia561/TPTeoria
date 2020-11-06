@@ -31,7 +31,7 @@ public class Animal implements Runnable {
 
                     try {
 
-                        this.pasear();
+                        this.pasearComer();
 
                         comedor.dejarPlato(tipo);
                         comedor.salirComedor();
@@ -45,7 +45,7 @@ public class Animal implements Runnable {
             } else {
                 try {
 
-                    this.pasear();
+                    this.pasearComer();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -56,7 +56,7 @@ public class Animal implements Runnable {
 
     }
 
-    private void pasear() throws InterruptedException {
+    private void pasearComer() throws InterruptedException {
 
         // solo es para enmascarar el sleep
         //System.out.println("El " + Thread.currentThread().getName() + " esta paseando");
