@@ -12,9 +12,18 @@ public class Cliente implements Runnable {
 
     @Override
     public void run() {
-        
-        barberia.solicitarCorte();
-        barberia.pagar();
+
+        if (barberia.entrarSala()) {
+
+            try {
+                barberia.solicitarCorte();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            barberia.pagar();
+
+        }
 
     }
 
