@@ -11,14 +11,14 @@ public class SalaFumadores {
 
     public SalaFumadores() {
         
-        this.mesa[0] = 0; // Hay dos mesas en donde se colocan los materiales
-        this.mesa[1] = 0; // y donde los fumadores buscaran lo que neseciten
+        this.mesa[0] = 1; // Hay dos mesas en donde se colocan los materiales
+        this.mesa[1] = 2; // y donde los fumadores buscaran lo que neseciten
 
     }
 
     public synchronized void colocar(int num) throws InterruptedException {
 
-        while (this.lleno()) {
+        if (this.lleno()) {
             System.out.println("como esta lleno espera");
             this.wait();
         }
