@@ -1,4 +1,4 @@
-package Museo;
+package TP6.Museo;
 
 public class Sala {
 

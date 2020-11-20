@@ -1,4 +1,4 @@
-package Museo;
+package TP6.Museo;
 
 import java.util.ArrayList;
 import java.util.List;

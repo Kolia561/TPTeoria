@@ -1,4 +1,4 @@
-package Museo;
+package TP6.Museo;
 
 public class Persona implements Runnable {
 
@@ -22,7 +22,6 @@ public class Persona implements Runnable {
                 museo.entrarSalaJubilado();
 
                 try {
-
                     Thread.sleep(2000);
                     museo.salirSala();
 
