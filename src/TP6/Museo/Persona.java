@@ -31,10 +31,10 @@ public class Persona implements Runnable {
                 }
 
             } else {
-                museo.entrarSala();
+                
 
                 try {
-
+                    museo.entrarSala();
                     Thread.sleep(1500);
                     museo.salirSala();
                 } catch (Exception e) {

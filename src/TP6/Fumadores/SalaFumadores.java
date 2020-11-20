@@ -11,8 +11,8 @@ public class SalaFumadores {
 
     public SalaFumadores() {
         
-        this.mesa[0] = 0;
-        this.mesa[1] = 0;
+        this.mesa[0] = 0; // Hay dos mesas en donde se colocan los materiales
+        this.mesa[1] = 0; // y donde los fumadores buscaran lo que neseciten
 
     }
 
@@ -23,9 +23,15 @@ public class SalaFumadores {
             this.wait();
         }
 
+        /**Lo que se coloque en las mesas lleva la misma nomenclatura
+         * que el identifcador de los fumadores
+         * Como son tres fumadores y tres materias se cuenta del 1 al 3
+         * y se colocan en dos mesas por lo tanto hay tres posibilidades
+         * sin repeticion e ignorando el orden
+         **/
         switch (num) {
             case 1:
-                this.mesa[0] = 2;
+                this.mesa[0] = 2;       
                 this.mesa[1] = 3;
                 break;
             case 2:
@@ -56,6 +62,7 @@ public class SalaFumadores {
 
     public synchronized void terminafumar(int id) {
         System.out.println("Termino de fumar fumador "+id);
+        //cuando termina de fumar vacia las mesas
         this.mesa[0] = 0;
         this.mesa[1] = 0;
         this.notifyAll();
@@ -72,6 +79,8 @@ public class SalaFumadores {
     public synchronized boolean puedofumar(int id) {
         boolean rta = false;
 
+        //para saber si puede fumar verifica que lo que esta en la mesa es algo distinto 
+        // ya posee y ademas que no esten vacias
         if (mesa[0] != id && mesa[1] != id && mesa[0] != 0 && mesa[1] != 0) {
             rta = true;
         }
