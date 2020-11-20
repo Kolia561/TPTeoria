@@ -11,18 +11,20 @@ public class SalaFumadores {
 
     public SalaFumadores() {
         
-        this.mesa[0] = 1; // Hay dos mesas en donde se colocan los materiales
-        this.mesa[1] = 2; // y donde los fumadores buscaran lo que neseciten
+        this.mesa[0] = 0; // Hay dos mesas en donde se colocan los materiales
+        this.mesa[1] = 0; // y donde los fumadores buscaran lo que neseciten
 
     }
 
     public synchronized void colocar(int num) throws InterruptedException {
 
-        if (this.lleno()) {
+        while (this.lleno()) {   //si bien con un if para un solo agente alcanza, de haber mas de uno al despertarse escriben todos antes de dormir de nuevo
             System.out.println("como esta lleno espera");
             this.wait();
         }
-
+        /** System.out.println("en el slot 0 hay: " + this.mesa[0]);
+            System.out.println("en el slot 1 hay: " + this.mesa[1]);
+        **/
         /**Lo que se coloque en las mesas lleva la misma nomenclatura
          * que el identifcador de los fumadores
          * Como son tres fumadores y tres materias se cuenta del 1 al 3
