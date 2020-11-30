@@ -22,7 +22,7 @@ public class Main {
 
         for (int i = 0; i < especies.length; i++) {
             
-            for (int j = 0; i < 5; j++) {
+            for (int j = 0; j < 5; j++) {
 
                 animales.add(new Thread(new Animal(comedero, llaves[i]), ( especies[i] + (j + 1))));
             

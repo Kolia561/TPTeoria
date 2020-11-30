@@ -18,19 +18,18 @@ public class SalaFumadores {
 
     public synchronized void colocar(int num) throws InterruptedException {
 
-        while (this.lleno()) {   //si bien con un if para un solo agente alcanza, de haber mas de uno al despertarse escriben todos antes de dormir de nuevo
+        while (this.lleno()) {
             System.out.println("como esta lleno espera");
             this.wait();
         }
-        /** System.out.println("en el slot 0 hay: " + this.mesa[0]);
-            System.out.println("en el slot 1 hay: " + this.mesa[1]);
-        **/
+
         /**Lo que se coloque en las mesas lleva la misma nomenclatura
          * que el identifcador de los fumadores
          * Como son tres fumadores y tres materias se cuenta del 1 al 3
          * y se colocan en dos mesas por lo tanto hay tres posibilidades
          * sin repeticion e ignorando el orden
          **/
+        System.out.println(this.mesa[0]+this.mesa[1]);
         switch (num) {
             case 1:
                 this.mesa[0] = 2;       

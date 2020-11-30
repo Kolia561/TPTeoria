@@ -10,17 +10,15 @@ public class DisparaSala {
         Fumador f3 = new Fumador(3, sala);
         
         Agente ag = new Agente(sala);
-        Agente ag2 = new Agente(sala);
         
         Thread fumador1 = new Thread(f1);
         Thread fumador2 = new Thread(f2);
         Thread fumador3 = new Thread(f3);
         Thread agente = new Thread(ag);
-        Thread agente2 = new Thread(ag2);
         
         fumador1.start();
         fumador2.start();
         fumador3.start();
-        agente.start(); agente2.start();
+        agente.start();
     }
 }

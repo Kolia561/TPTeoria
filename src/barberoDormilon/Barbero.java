@@ -2,9 +2,9 @@ package barberoDormilon;
 
 public class Barbero implements Runnable {
 
-    private  Sala barberia;
+    private Sala barberia;
 
-    public Barbero(Sala barb){
+    public Barbero(Sala barb) {
 
         this.barberia = barb;
     }
@@ -13,7 +13,12 @@ public class Barbero implements Runnable {
     public void run() {
 
         barberia.cortar();
-        Thread.sleep(2000);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         barberia.cobrar();
         
 
