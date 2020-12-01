@@ -13,9 +13,6 @@ public class Main {
         SynchronousQueue<String> check4 = new SynchronousQueue<>();
         LinkedList<Thread> hilos = new LinkedList<>();
 
-        // Hay que crear los corredores uno por uno... o armar un arreglo de pares de
-        // queues
-
         hilos.add(new Thread(new Corredor(null, check1), "corredor 1"));
         hilos.add(new Thread(new Corredor(check1, check2), "corredor 2"));
         hilos.add(new Thread(new Corredor(check2, check3), "corredor 3"));

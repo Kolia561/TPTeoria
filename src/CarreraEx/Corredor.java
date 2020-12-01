@@ -17,7 +17,6 @@ public class Corredor implements Runnable {
                     objeto = lugar1.exchange("botella con agua");    //espera que le den el testigo
                     System.out.println(Thread.currentThread().getName()+" toma el "+objeto+" y empieza a correr");
                     Thread.sleep(2000);         //tiempo de carrera
-                    //System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
                     objeto = lugar2.exchange(objeto);    //entrega el testigo
                     System.out.println(Thread.currentThread().getName()+" Entrega el testigo y bebe de su "+objeto);
                 } else{   
