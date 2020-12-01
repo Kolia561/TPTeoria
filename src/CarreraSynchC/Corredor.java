@@ -9,30 +9,6 @@ public class Corredor implements Runnable {
     private SynchronousQueue<String> lugar2;
     private String testigo = new String("testigo");
 
-    @Override
- /*   public void run() {
-        try {
-            if (lugar2 == null) {
-                System.out.println(Thread.currentThread().getName()+" ultimo");
-                lugar1.put(testigo);
-            } else if (lugar1 == null) {
-                System.out.println(Thread.currentThread().getName()+" primero");
-                testigo = lugar2.poll();
-            } else {
-                System.out.println(Thread.currentThread().getName()+" entre");
-                testigo = lugar2.poll();
-                lugar1.put(testigo);
-                            
-                          
-            }
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {        
-            e.printStackTrace();
-    }
-        
-        System.out.println(Thread.currentThread().getName()+" sali");
-   } */
-
     public void run() {
         try {
             
@@ -43,9 +19,9 @@ public class Corredor implements Runnable {
                     Thread.sleep(2000);         //tiempo de carrera
                     System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
                     testigo = lugar2.poll();    //los del medio
-                } else{ 
-                    Thread.sleep(2000);         //tiempo de carrera
+                } else{                    
                     System.out.println(Thread.currentThread().getName()+" primero, arranco ");
+                    Thread.sleep(2000);         //tiempo de carrera
                     testigo = lugar2.poll(6000, TimeUnit.MILLISECONDS);    //el primero, usa una sincronizacion con espera porque se puede dar que intente "tomar" antes de que el segundo "ponga"
                     System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
                 }
