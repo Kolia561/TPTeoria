@@ -38,24 +38,25 @@ public class Corredor implements Runnable {
                 if (lugar1 != null) {
                     System.out.println(Thread.currentThread().getName()+" entre, tomo");                    
                     lugar1.put(testigo);
-                    Thread.sleep(2000);
+                    System.out.println(Thread.currentThread().getName()+" sali");
                     testigo = lugar2.poll();    //los del medio
                 } else{
                     Thread.sleep(1000);
                     System.out.println(Thread.currentThread().getName()+" primero, arranco ");
                     testigo = lugar2.poll();    //el primero
+                    System.out.println(Thread.currentThread().getName()+" sali");
                 }
             } else {                               
                 System.out.println(Thread.currentThread().getName()+" ultimo, espero");
-                lugar1.put(testigo);            //el ultimo
-                Thread.sleep(2000);
+                lugar1.put(testigo);            //el ultimo pone en su "lugar 1"
+                System.out.println(Thread.currentThread().getName()+" sali");
             }
 
         } catch (InterruptedException e) {        
             e.printStackTrace();
     }
         
-        System.out.println(Thread.currentThread().getName()+" sali");
+        
     }
 
         
