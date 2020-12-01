@@ -13,7 +13,7 @@ public class Corredor implements Runnable {
 
         if (lugar1 != null) {
 
-            testigo = lugar1.poll();
+            this.tomar();
 
             try {
                 Thread.sleep((long) Math.random());
@@ -22,19 +22,7 @@ public class Corredor implements Runnable {
                 e.printStackTrace();
             }
 
-            if (lugar2 != null) {
-
-                try {
-                    lugar2.put(testigo);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-            } else {
-
-                System.out.println(Thread.currentThread().getName() + " llego a la meta");
-            }
+            this.entregar(testigo);
 
         } else {
 
@@ -45,19 +33,43 @@ public class Corredor implements Runnable {
                 e.printStackTrace();
             }
 
-            if (lugar2 != null) {
+            this.entregar("testigo");
 
-                try {
-                    lugar2.put("testigo");
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                
-            } else {
-                
-                System.out.println(Thread.currentThread().getName()+" llego a la meta");
+        }
+
+    }
+
+    private void tomar() {
+
+        while (testigo == null) {
+
+            this.testigo = this.lugar1.poll();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
+
+        }
+
+    }
+
+    private void entregar(Object testigo2) {
+
+        if (this.lugar2 != null) {
+
+            try {
+                System.out.println(Thread.currentThread().getName() + " entrego la posta");
+                this.lugar2.put(testigo2);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        } else {
+
+            System.out.println(Thread.currentThread().getName() + " llego a la meta");
         }
 
     }
