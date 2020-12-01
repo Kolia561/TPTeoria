@@ -1,6 +1,7 @@
 package CarreraSynchC;
 
 import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
 
 public class Corredor implements Runnable {
 
@@ -34,29 +35,29 @@ public class Corredor implements Runnable {
 
     public void run() {
         try {
+            
             if (lugar2 != null) {
                 if (lugar1 != null) {
-                    System.out.println(Thread.currentThread().getName()+" entre, tomo");                    
+                    System.out.println(Thread.currentThread().getName()+" listo para correr, espero mi turno");                    
                     lugar1.put(testigo);
-                    System.out.println(Thread.currentThread().getName()+" sali");
-                    testigo = lugar2.poll();    //los del medio
-                } else{
                     Thread.sleep(1000);
+                    System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
+                    testigo = lugar2.poll();    //los del medio
+                } else{ 
                     System.out.println(Thread.currentThread().getName()+" primero, arranco ");
-                    testigo = lugar2.poll();    //el primero
-                    System.out.println(Thread.currentThread().getName()+" sali");
+                    testigo = lugar2.poll(2000, TimeUnit.MILLISECONDS);    //el primero, usa una sincronizacion con espera porque se puede dar que intente "tomar" antes de que el segundo "ponga"
+                    System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
                 }
             } else {                               
-                System.out.println(Thread.currentThread().getName()+" ultimo, espero");
+                System.out.println(Thread.currentThread().getName()+" ultimo, espero mi turno");
                 lugar1.put(testigo);            //el ultimo pone en su "lugar 1"
-                System.out.println(Thread.currentThread().getName()+" sali");
+                Thread.sleep(1000);
+                System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
             }
-
+            
         } catch (InterruptedException e) {        
             e.printStackTrace();
-    }
-        
-        
+        }        
     }
 
         
