@@ -17,13 +17,13 @@ public class Corredor implements Runnable {
                     System.out.println(Thread.currentThread().getName()+" listo para correr, espero mi turno");                    
                     lugar1.put(testigo);
                     Thread.sleep(2000);         //tiempo de carrera
-                    System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
+                    System.out.println(Thread.currentThread().getName()+" entrega el testigo");
                     testigo = lugar2.poll();    //los del medio
                 } else{                    
                     System.out.println(Thread.currentThread().getName()+" primero, arranco ");
                     Thread.sleep(2000);         //tiempo de carrera
                     testigo = lugar2.poll(6000, TimeUnit.MILLISECONDS);    //el primero, usa una sincronizacion con espera porque se puede dar que intente "tomar" antes de que el segundo "ponga"
-                    System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
+                    System.out.println(Thread.currentThread().getName()+" entrega el testigo");
                 }
             } else {                               
                 System.out.println(Thread.currentThread().getName()+" ultimo, espero mi turno");
