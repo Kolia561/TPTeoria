@@ -1,7 +1,6 @@
 package CarreraEx;
 
 import java.util.concurrent.Exchanger;
-import java.util.concurrent.TimeUnit;
 
 public class Corredor implements Runnable {
 
@@ -14,21 +13,23 @@ public class Corredor implements Runnable {
             
             if (lugar2 != null) {
                 if (lugar1 != null) {
-                    System.out.println(Thread.currentThread().getName()+" listo para correr, espero mi turno");                    
-                    lugar1.exchange(objeto);    //espera que le den el testigo
+                    System.out.println(Thread.currentThread().getName()+" listo para correr, espero mi turno");
+                    objeto = lugar1.exchange("botella con agua");    //espera que le den el testigo
                     System.out.println(Thread.currentThread().getName()+" toma el "+objeto+" y empieza a correr");
                     Thread.sleep(2000);         //tiempo de carrera
-                    System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
-                    lugar2.exchange(objeto);    //entrega el testigo
-                } else{                    
+                    //System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
+                    objeto = lugar2.exchange(objeto);    //entrega el testigo
+                    System.out.println(Thread.currentThread().getName()+" Entrega el testigo y bebe de su "+objeto);
+                } else{   
+                    Thread.sleep(1000);  //espera a que se alisten los compañeros  (es solo para que se vea mas claro en consola)                 
                     System.out.println(Thread.currentThread().getName()+" primero, arranco ");
                     Thread.sleep(2000);         //tiempo de carrera
-                    lugar2.exchange("testigo");    //el primero, despues de correr entrega el testigo.
-                    System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
+                    objeto = lugar2.exchange(objeto);    //el PRIMERO, despues de correr entrega el testigo.
+                    System.out.println(Thread.currentThread().getName()+" Entrega el testigo y bebe de su "+objeto);
                 }
-            } else {                               
+            } else {                //EL ULTIMO                 
                 System.out.println(Thread.currentThread().getName()+" ultimo, espero mi turno");
-                lugar1.exchange(objeto);            //espera que le den el testigo
+                objeto = lugar1.exchange("botella con agua");            //espera que le den el testigo
                 System.out.println(Thread.currentThread().getName()+" toma el "+objeto+" y empieza a correr");
                 Thread.sleep(2000);             //tiempo de carrera
                 System.out.println(Thread.currentThread().getName()+" LLega a la linea de meta");
