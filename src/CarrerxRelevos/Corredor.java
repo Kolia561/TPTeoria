@@ -11,16 +11,44 @@ public class Corredor implements Runnable {
     @Override
     public void run() {
 
-        testigo = lugar1.poll();
-        
-        try {
-            Thread.sleep((long) Math.random());
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        if (lugar1 != null) {
 
-        lugar2.add(testigo);
+            testigo = lugar1.poll();
+
+            try {
+                Thread.sleep((long) Math.random());
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            if (lugar2!=null) {
+
+                lugar2.add(testigo);
+                
+            } else {
+                
+                System.out.println(Thread.currentThread().getName()+" llego a la meta");
+            }
+
+        } else {
+
+            try {
+                Thread.sleep((long) Math.random());
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            if (lugar2!=null) {
+
+                lugar2.add("testigo");
+                
+            } else {
+                
+                System.out.println(Thread.currentThread().getName()+" llego a la meta");
+            }
+        }
 
     }
 

@@ -8,10 +8,10 @@ public class Main {
         SynchronousQueue<Object> check2 = new SynchronousQueue<>();
         SynchronousQueue<Object> check3 = new SynchronousQueue<>();
         SynchronousQueue<Object> check4 = new SynchronousQueue<>();
+
+
+        //Hay que crear los corredores uno por uno... o armar un arreglo de pares de queues
         
-
-        check1.add("testigo");
-
         
 
     }
