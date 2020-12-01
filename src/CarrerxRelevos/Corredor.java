@@ -22,13 +22,18 @@ public class Corredor implements Runnable {
                 e.printStackTrace();
             }
 
-            if (lugar2!=null) {
+            if (lugar2 != null) {
 
-                lugar2.add(testigo);
-                
+                try {
+                    lugar2.put(testigo);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
             } else {
-                
-                System.out.println(Thread.currentThread().getName()+" llego a la meta");
+
+                System.out.println(Thread.currentThread().getName() + " llego a la meta");
             }
 
         } else {
@@ -40,9 +45,14 @@ public class Corredor implements Runnable {
                 e.printStackTrace();
             }
 
-            if (lugar2!=null) {
+            if (lugar2 != null) {
 
-                lugar2.add("testigo");
+                try {
+                    lugar2.put("testigo");
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 
             } else {
                 
